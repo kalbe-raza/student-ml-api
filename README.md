@@ -47,7 +47,25 @@ and fails the build if the tag and the `VERSION` file disagree.
 | `.github/workflows/ci.yml` | Pull Request to `main`, pushes to non-main branches | Test, validate, Docker build check. **Never publishes.** |
 | `.github/workflows/release.yml` | Push of a `v*.*.*` tag | Test, build, version, publish to GHCR. |
 
+## Container registry
+
+Published to GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/kalbe-raza/student-ml-api:1.1.0   # current release
+docker pull ghcr.io/kalbe-raza/student-ml-api:1.0.0   # previous release, kept for rollback
+docker pull ghcr.io/kalbe-raza/student-ml-api:latest  # -> 1.1.0
+```
+
+| Release | Git tag | Merge commit | Image digest |
+|---|---|---|---|
+| 1.1.0 | `v1.1.0` | `1235578` (PR #2) | `sha256:331c819532caf6bca77068735fb50eb2d336f0524474ece6457eee20a6fdaa6c` |
+| 1.0.0 | `v1.0.0` | `9323ff4` (PR #1) | `sha256:156dae8bf5040e37ead186450df4d3f60cfb3bb17802f33367027354f1ccd311` |
+
 ## Documentation
 
-- [`docs/WORKFLOW.md`](docs/WORKFLOW.md) — branch protection, merge strategy, traceability, rollback.
-- [`docs/FAILURE_ANALYSIS.md`](docs/FAILURE_ANALYSIS.md) — deliberate failures, diagnosis and corrections.
+- [`docs/WORKFLOW.md`](docs/WORKFLOW.md) — branch protection settings, merge strategy, CI/release separation, rollback rationale.
+- [`docs/TRACEABILITY.md`](docs/TRACEABILITY.md) — PR -> commit -> tag -> image -> digest chain.
+- [`docs/FAILURE_ANALYSIS.md`](docs/FAILURE_ANALYSIS.md) — four reproduced failures with symptom, root cause, evidence and correction.
+- [`docs/VIVA.md`](docs/VIVA.md) — question-by-question preparation grounded in this repository.
+- [`docs/evidence/`](docs/evidence/) — captured CI runs, Docker inspection, build-cache analysis, registry and rollback output.
