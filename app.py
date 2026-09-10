@@ -8,6 +8,10 @@ from flask import Flask, jsonify, request
 
 APPLICATION_NAME = "student-ml-api"
 
+# The served model is versioned independently of the application itself, so a
+# model swap and a code change can be told apart from the /health response.
+MODEL_VERSION = "model-1"
+
 
 def _read_version() -> str:
     """Single source of truth for the application version: the VERSION file."""
@@ -29,7 +33,8 @@ def health():
         {
             "status": "healthy",
             "application": APPLICATION_NAME,
-            "version": APPLICATION_VERSION,
+            "application_version": APPLICATION_VERSION,
+            "model_version": MODEL_VERSION,
         }
     )
 
