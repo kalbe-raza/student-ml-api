@@ -19,6 +19,23 @@
 > rule stays enforced. The review step is still performed and documented on the
 > PR itself. In a team repository this would be set to 1 or more.
 
+### Verified by attempting a direct push to `main`
+
+```
+$ git push origin main
+remote: error: GH006: Protected branch update failed for refs/heads/main.
+remote:
+remote: - Changes must be made through a pull request.
+remote:
+remote: - 2 of 2 required status checks are expected.
+To https://github.com/kalbe-raza/student-ml-api.git
+ ! [remote rejected] main -> main (protected branch hook declined)
+error: failed to push some refs
+```
+
+Because `enforce_admins` is enabled, the repository owner is blocked too — the
+rule cannot be bypassed by the person who created it.
+
 ## 2. Merge strategy (Part 8)
 
 **Selected strategy: Squash and Merge.**
