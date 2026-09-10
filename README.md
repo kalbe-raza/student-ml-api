@@ -10,7 +10,7 @@ feature branch -> Pull Request -> CI -> review -> merge -> version tag -> releas
 
 | Method | Path       | Description                                   |
 |--------|------------|-----------------------------------------------|
-| GET    | `/health`  | Service status, application name and version. |
+| GET    | `/health`  | Service status, application name, application version and model version. |
 | POST   | `/predict` | Returns `prediction = value * 2`.             |
 
 ```bash
